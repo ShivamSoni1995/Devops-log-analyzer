@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps Log Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Cloud Run + Vertex AI Gemini</p>
+          <h1>DevOps Log Analyzer</h1>
+          <p class="hero-text">
+            Paste an infrastructure or application log and get a crisp diagnosis:
+            issue, root cause, recommended fix, and severity.
+          </p>
+          <div class="hero-meta">
+            <span>Single ADK agent</span>
+            <span>HTTP API ready</span>
+            <span>Evaluator-friendly UI</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="hero-card-label">How to test</p>
+          <ol>
+            <li>Pick a sample log or paste your own.</li>
+            <li>Click <strong>Analyze Log</strong>.</li>
+            <li>Review the structured response instantly.</li>
+          </ol>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="panel panel-input">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Input</p>
+              <h2>Log Playground</h2>
+            </div>
+            <span class="pill neutral">POST /analyze</span>
+          </div>
+
+          <div class="sample-strip">
+            <button class="sample-chip" data-sample="crashloop">CrashLoopBackOff</button>
+            <button class="sample-chip" data-sample="oom">OOMKilled</button>
+            <button class="sample-chip" data-sample="network">Connection refused</button>
+          </div>
+
+          <label class="field-label" for="log-input">Paste a log snippet</label>
+          <textarea
+            id="log-input"
+            spellcheck="false"
+            placeholder="Example: CrashLoopBackOff in pod payment-api due to invalid startup command"
+          ></textarea>
+
+          <div class="actions">
+            <button id="analyze-btn" class="primary-btn">Analyze Log</button>
+            <button id="clear-btn" class="ghost-btn" type="button">Clear</button>
+          </div>
+
+          <p id="status-text" class="status-text">
+            Ready for analysis.
+          </p>
+        </section>
+
+        <section class="panel panel-output">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Output</p>
+              <h2>Analysis Result</h2>
+            </div>
+            <span id="severity-pill" class="pill neutral">Waiting</span>
+          </div>
+
+          <div id="result-card" class="result-card empty">
+            <div class="result-empty">
+              <p class="result-empty-title">No result yet</p>
+              <p class="result-empty-text">
+                Run an analysis to see the issue summary, cause, remediation, and severity.
+              </p>
+            </div>
+          </div>
+
+          <div class="json-block">
+            <div class="json-header">
+              <span>Raw JSON</span>
+              <button id="copy-btn" class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre id="json-output">{
+  "issue": "...",
+  "cause": "...",
+  "fix": "...",
+  "severity": "..."
+}</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
