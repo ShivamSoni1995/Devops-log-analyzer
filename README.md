@@ -19,11 +19,6 @@ This project focuses on one job only: take a DevOps or infrastructure log and re
 
 It also includes a browser UI on `/` so evaluators can test the project instantly without Postman or curl.
 
-## Live Demo
-
-- Live URL: `https://devops-log-analyzer-642800067956.us-central1.run.app`
-- GitHub Repo: `https://github.com/ShivamSoni1995/Devops-log-analyzer`
-
 ## What This Project Does
 
 The agent analyzes logs from common DevOps scenarios such as:
@@ -86,23 +81,8 @@ Main routes:
 - `GET /health` -> health check
 - `POST /analyze` -> log analysis API
 
-### Workflow Diagram
 
-```mermaid
-flowchart TD
-    A[Evaluator / User] --> B[Browser UI<br/>GET /]
-    A --> C[API Client<br/>POST /analyze]
-    B --> D[FastAPI Backend]
-    C --> D
-    D --> E[Pydantic Validation]
-    E --> F[ADK Agent<br/>DevOps Log Analyzer]
-    F --> G[Gemini on Vertex AI]
-    G --> H[Structured JSON<br/>issue, cause, fix, severity]
-    H --> D
-    D --> I[UI Result Panel]
-    D --> J[API JSON Response]
-    K[Cloud Run] --> D
-```
+![Architecture Diagram](./Architecture-diagram.png)
 
 ## Project Structure
 
@@ -184,7 +164,7 @@ Notes:
 Use WSL for local development.
 
 ```bash
-cd /mnt/c/Users/shivt/OneDrive/Desktop/Devops-log-analyzer
+cd /path/to/project
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
